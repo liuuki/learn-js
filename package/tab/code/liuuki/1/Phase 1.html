@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .tab{
+            background-color: white;
+            border:none;
+            border-radius: 5px 5px;
+            box-shadow: 0px 0px 15px 5px darkgray;
+            width: 50%;
+            min-width: 300px;
+            max-width: 500px;
+            height: 150px;
+        }
+        ul{
+            list-style-type: none;
+        }
+        button{
+            background-color: white;
+            border:none;
+            border-radius: 2px 2px;
+        }
+        :focus{
+            background-color: beige;
+        }
+        li.content{
+            font-size: 10px;
+        }
+    </style>
+    <title>Tab Phase 1</title>
+</head>
+<body>
+    <div id="tab" class = "tab">
+        <ul id = "trigger"></ul>
+        <ul id = "content"></ul>
+    </div>
+        
+    
+    <script>
+        var text =  '{"tabs":['+
+                            '{"tagName":"Home", "tagContent":"Just assume there is a poetry pls :)"},'+
+                            '{"tagName":"Profile", "tagContent":"Hey this is my first tag, phase 1."},'+
+                            '{"tagName":"Demo", "tagContent":"That is exactly what you are looking at now."}]}';
+        obj = JSON.parse(text);
+        for (var i = 0; i < obj.tabs.length; i++){
+            obj.tabs[i].index = i;
+            document.getElementById("trigger").innerHTML += 
+                '<button id = '+i+' class = "trigger">'+obj.tabs[i].tagName+'</button>';
+        }
+        var tabTrigger = document.getElementsByTagName("BUTTON");
+        for (var i = 0; i < tabTrigger.length; i++)
+        {
+            tabTrigger[i].onclick = function(e)
+            {
+                document.getElementById("content").innerHTML = 
+                    '<li class = "content">'+obj.tabs[e.target.id].tagContent+'</li>';
+            };
+        }
+
+    </script>
+</body>
+</html>
